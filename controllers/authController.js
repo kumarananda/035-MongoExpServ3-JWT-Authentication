@@ -1,5 +1,6 @@
 const Admins = require("../models/adminModle");
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const jwt =require('jsonwebtoken')
 
 
 // Admin Login System
@@ -19,8 +20,16 @@ const adminLogin = async (req, res) => {
         })
     }else{
         if(await bcrypt.compare(password, login_data.password)){
-            res.status(200).json({ 
-                message : "Admin user login successfully"
+            
+            // create json web token ( {user_ID }, our_secret , {expiry/validity})
+            const token = jwt.sign( {id : login_data._id},  process.env.JWT_SECRET , { expiresIn : "1d" });
+
+            res.status(200).json({
+                _id :login_data._id,
+                name :login_data.name,
+                email :login_data.email,
+                cell :login_data.cell,
+                token : token
             })
         }else{
             res.status(400).json({ 
