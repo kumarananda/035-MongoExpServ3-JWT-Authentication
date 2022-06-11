@@ -37,7 +37,7 @@ const createAdmin = async (req, res) => {
         res.status(200).json({
             message : `Create admin is Done`
         })
-    }
+    }  
 
     
     
