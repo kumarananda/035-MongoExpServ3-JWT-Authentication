@@ -7,27 +7,34 @@ const authcheck = (req, res, next)=> {
 
     if(req.headers.authorization){
         
-        //get token from requist
+        try{
+            //get token from requist
         const token = req.headers.authorization.split(' ')[1];
 
         // verify token
-        console.log(jwt.verify(token, process.env.JWT_SECRET));
-        const token_verify = jwt.verify(token, process.env.JWT_SECRET) 
-        if(token_verify){
+        // console.log(jwt.verify(token, process.env.JWT_SECRET));
+        const {id} = jwt.verify(token, process.env.JWT_SECRET);
+        if(id){
             next();
-        }else {
-            res.status(400).json({
-                message : 'invalid token'
-            })
+        }//else if(hh) {
+        //     res.status(400).json({
+        //         message : 'invalid token'
+        //     })
+        // }
+
+        }catch(err){
+            res.status(400).json(err)
         }
+
            
     }else {
         res.status(400).json({
-            message : 'Token is found'
+            message : 'Token is not found'
         })
     }
     
 }
+
 module.exports = {
     authcheck
 }
