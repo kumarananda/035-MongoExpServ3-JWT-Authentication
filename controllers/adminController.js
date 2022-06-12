@@ -68,11 +68,25 @@ const deleteSingleAdmin = async (req, res) => {
     }
 
 }
+const adminHome = (req, res ) => {
+    res.status(200).json({
+        message : `This is admin home`
+    })
+}
+
+const adminProfile = (req, res ) => {
+    res.status(200).json({
+        message : `This is admin profile`
+    })
+}
+
 
 module.exports = {
     getAllAdmin,
     getSingleAdmin,
     createAdmin,
     updateSingleAdmin,
-    deleteSingleAdmin
+    deleteSingleAdmin,
+    adminHome,
+    adminProfile
 }

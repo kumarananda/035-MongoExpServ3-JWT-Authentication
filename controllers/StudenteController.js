@@ -53,7 +53,6 @@ const updateStudent = async (req, res ) => {
 const deleteStudent = async (req, res ) => {
     let id = req.params.id ;
 
-
     await Students.findByIdAndDelete(id);
     res.status(202).json({
         message : 'Data Delete Successfully'

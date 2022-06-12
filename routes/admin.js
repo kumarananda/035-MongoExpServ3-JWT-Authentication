@@ -4,9 +4,12 @@ const { getAllAdmin,
     getSingleAdmin, 
     createAdmin, 
     updateSingleAdmin, 
-    deleteSingleAdmin 
+    deleteSingleAdmin,
+    adminHome,
+    adminProfile
 } = require('../controllers/adminController');
 const { adminLogin } = require('../controllers/authController');
+const { authcheck } = require('../middleware/authMiddleware');
 
 
 
@@ -18,9 +21,19 @@ const { adminLogin } = require('../controllers/authController');
 // router.patch('/:id', updateSingleAdmin);
 // router.delete('/:id', deleteSingleAdmin);
 
+
+router.get('/home', authcheck,  adminHome)
+router.get('/profile', authcheck, adminProfile);
 router.post('/login', adminLogin)
+
 router.route('/').get(getAllAdmin ).post(createAdmin);
+
+
 router.route('/:id').put(updateSingleAdmin).patch(updateSingleAdmin).delete(deleteSingleAdmin).get(getSingleAdmin);
+
+
+
+
 
 
 
