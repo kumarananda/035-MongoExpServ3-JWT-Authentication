@@ -47,5 +47,5 @@ const adminModle = mongoose.Schema({
     timestamps: true
 })
 
-module.exports = mongoose.model("Admins", adminModle)
+module.exports = mongoose.model("Admin", adminModle)
 

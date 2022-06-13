@@ -69,15 +69,18 @@ const deleteSingleAdmin = async (req, res) => {
 
 }
 const adminHome = (req, res ) => {
-    res.status(200).json({
-        message : `This is admin home`
-    })
+    res.status(200).json(req.user )  
+    // res.status(200).json([{
+    //     message : `This is admin home`
+    // }, req.user]
+    // )
 }
 
 const adminProfile = (req, res ) => {
-    res.status(200).json({
+    res.status(200).json([{
         message : `This is admin profile`
-    })
+    }, req.user]
+    ) // extra tried
 }
 
 
